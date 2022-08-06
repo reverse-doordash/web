@@ -28,7 +28,7 @@
         <br />
         <div class="tag" id="liveStatus"></div>
         <div class="map">
-          <canvas id="out"></canvas>
+          <canvas id="out" style="width: 100%; height: 100%"></canvas>
         </div>
         <div class="container-buttons">
           <div class="btn" id="disco-mode">Disco Mode</div>
@@ -52,10 +52,10 @@
 
     const canvas = document.getElementById('out');
     const ctx = canvas.getContext('2d');
-    (window.onresize = () => {
-      canvas.width = window.innerWidth * 0.95;
-      canvas.height = window.innerHeight / 2;
-    })();
+    // (window.onresize = () => {
+    //   canvas.width = '100%';
+    //   canvas.height = '100%';
+    // })();
     const limits = [
       { x: 37.78680489952002, y: -122.4049480163113 },
       { x: 37.78662352047515, y: -122.40631596968298 },
@@ -80,7 +80,7 @@
 
     function line(p1, p2) {
       const [c1, c2] = [p1, p2].map(range);
-      ctx.lineWidth = 75;
+      ctx.lineWidth = 50;
 
       ctx.beginPath();
       ctx.moveTo(c1.x, c1.y);
