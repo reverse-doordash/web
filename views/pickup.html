@@ -10,8 +10,9 @@
                 Home
             </button>
         </div>
-        <p>
-        </p>
+        <div id="price">
+
+        </div>
 
         <div class="map">
 
@@ -34,8 +35,13 @@
                 if (time < 0) {
                     clearInterval(timer);
                     window.location.href = '/views/confirm.html'; 
+                    fetch('',{
+                        method: 'Post',
+                        
+                    })
                 }
             }, 1000);
         }
     </script>
+    <script src="/src/index.js"></script>
 </body>
