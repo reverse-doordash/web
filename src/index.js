@@ -1,19 +1,23 @@
 
 
 document.addEventListener('DOMContentLoaded', () => {
+<<<<<<< HEAD
     let time = 300;
+=======
+
+    let time = 500;
+    let price = 10.50;
+    let counter = 2;
+>>>>>>> f09b44ba93590380d17d259ed75e90850e498a27
     let timer = setInterval(() => {
-        let minutes = Math.trunc(time / 60)
-        let seconds = (time % 60)
-        if(seconds > 9){
-            document.querySelector('#timerdetail').innerHTML = minutes + " : " + seconds;
-        }
-        else if(seconds < 10){
-            document.querySelector('#timerdetail').innerHTML = minutes + " : 0" + seconds;
-        }
+        document.querySelector('#price').innerHTML = "The Current Price is : $" + price;
         time--;
         if (time < 0) {
+            price *= counter;
+            counter++;d
+            time = 300;
             clearInterval(timer);
         }
     }, 1000);
+
 })
