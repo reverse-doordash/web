@@ -1,8 +1,124 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap')
-    
+@import './sass/_variables.sass'
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap')
+
 html
     font-size: 62.5%
 
 body
     font-size: 1.6rem
-    font-family: 'Inter', sans-serif
+    font-family: $font-family
+    margin: 0
+    padding: 0
+
+*, *::before, *::after
+    box-sizing: border-box
+
+.wrapper
+    width: 100%
+    margin: 0
+    padding: 0
+
+    &.hero
+        height: 75vh
+        background: $hero-background
+        background-size: cover
+        background-position: 50% 50%
+        background-repeat: no-repeat
+        display: flex
+        align-items: center
+
+        .container
+            display: flex
+            flex-direction: column
+            align-items: center
+
+            h1
+                color: white
+                font-size: 4.8rem
+                text-align: center
+                margin-bottom: 3rem
+
+            input
+                font-family: $font-family
+                border-radius: 999px
+                border: none
+                padding: 1rem 2rem
+                font-size: 1.6rem
+
+                &::placeholder
+                    font-size: 1.6rem
+                    color: #2c2c2c
+                    font-weight: 500
+    &.gallery
+        padding: 6rem
+        .container
+            h1
+                margin-bottom: 4rem
+            .grid
+                display: grid
+                column-gap: 2rem
+                row-gap: 2rem
+                .item
+                    position: relative
+                    .img-block
+                        width: 100%
+                        height: 22rem
+                        background: url('https://source.unsplash.com/random/?food')
+                        background-size: cover
+                        background-position: 50% 50%
+                        border-radius: $border-radius
+                    p
+                        font-weight: 700
+                        span
+                            font-weight: 400
+                            color: #3b3b3b
+                        
+
+.container
+    position: relative
+    margin: 0 auto
+
+h1, h2, h3, h4, h5, h6
+    margin: 0
+    padding: 0
+
+// RESPONSIVE
+
+@media (min-width: $grid-breakpoint-xs)
+@media (min-width: $grid-breakpoint-sm)
+    .container
+        width: 100%
+
+    .wrapper
+        &.gallery
+            .container
+                .grid
+                    grid-template-columns: 1fr
+
+@media (min-width: $grid-breakpoint-md)
+    .container
+        width: 85%
+
+    .wrapper
+        &.gallery
+            .container
+                .grid
+                    grid-template-columns: 1fr 1fr
+@media (min-width: $grid-breakpoint-lg)
+    .wrapper
+        &.hero
+            .container
+                h1
+                    width: 90%
+@media (min-width: $grid-breakpoint-xl)
+    .wrapper
+        &.hero
+            .container
+                h1
+                    width: 60%
+        &.gallery
+            .container
+                .grid
+                    grid-template-columns: 1fr 1fr 1fr
+
+@media (min-width: $grid-breakpoint-xxl)
