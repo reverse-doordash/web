@@ -14,5 +14,4 @@ document.addEventListener('DOMContentLoaded', () => {
             clearInterval(timer);
         }
     }, 1000);
-
 })
