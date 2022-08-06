@@ -15,11 +15,12 @@ body
 
 .wrapper
     width: 100%
-    margin: 0
+    margin: 4rem 0 0 0
     padding: 0
 
     &.hero
         height: 75vh
+        margin: 0
         background: $hero-background
         background-size: cover
         background-position: 50% 50%
@@ -77,21 +78,62 @@ body
                     height: 18rem
                     width: 100%
                     border-radius: $border-radius
-                    border: 1px solid rgba(0,0,0,0.5)
+                    box-shadow: 0 2px 6px rgba(0,0,0,0.1)
+                    border: 1px solid rgba(0,0,0,0.1)
 
 .container
     position: relative
     margin: 0 auto
     h1
         margin-bottom: 4rem
-        display: flex
-        justify-content: space-between
-        flex-direction: columnx
+        display: inline-block
+    &-map
+        position: relative
+        margin: 0 auto
+        h1
+            margin: 2rem 0
+        a
+            color: inherit
+
+        .map
+            width: 100%
+            height: 48rem
+            border: 1px solid black
+            border-radius: $border-radius
+    &-buttons
+        margin-top: 2rem
+        .btn
+            display: inline-block
+            border-radius: $border-radius
+            background: black
+            color: white
+            padding: 1.2rem 2.8rem
+            font-weight: 700
+            font-size: 1.8rem
+
+            &#disco-mode
+                
+
+.icon
+    &-back
+        width: 4rem
+        height: 4rem
+
 
 .grid
     display: grid
     column-gap: 2rem
     row-gap: 2rem
+
+.tag
+    background: #db2727
+    color: white
+    font-weight: 700
+    font-size: 2rem
+    display: inline-block
+    padding: .4rem 1.4rem
+    border-radius: 3px
+    margin-bottom: 2rem
 
 h1, h2, h3, h4, h5, h6
     margin: 0

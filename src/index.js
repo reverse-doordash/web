@@ -1,5 +1,6 @@
+
+
 document.addEventListener('DOMContentLoaded', () => {
-<<<<<<< HEAD
     let time = 300;
     let timer = setInterval(() => {
         let minutes = Math.trunc(time / 60)
