@@ -97,14 +97,21 @@ body
 
         .map
             width: 100%
-            // height: 48rem
+            height: 48rem
             border: 1px solid black
             border-radius: $border-radius
+            overflow: hidden
+
+            canvas
+                width: 100%
+                height: 100%
+
     &-buttons
         margin-top: 2rem
         display: flex
 
         .btn
+            font-family: $font-family
             margin-right: 1.2rem
             cursor: pointer
             display: flex
@@ -115,6 +122,7 @@ body
             padding: 1.2rem 2.8rem
             font-weight: 700
             font-size: 2rem
+            border: none
 
             // svg
             //     display: inline
@@ -124,9 +132,14 @@ body
 
             &#disco-mode
                 background: #0058b8
+                &[disabled]
+                    background: rgba(0,0,0,0.6)
 
             &#ink-splat
                 background: #ff7214
+
+                &[disabled]
+                    background: rgba(0,0,0,0.6)
 
 .icon
     &-back
@@ -148,9 +161,16 @@ body
     border-radius: 3px
     margin-bottom: 2rem
 
+    span
+        animation: blink 1s step-start infinite
+
 h1, h2, h3, h4, h5, h6
     margin: 0
     padding: 0
+
+@keyframes blink
+    50%
+        opacity: 0
 
 // RESPONSIVE
 

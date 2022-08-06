@@ -28,11 +28,11 @@
         <br />
         <div class="tag" id="liveStatus"></div>
         <div class="map">
-          <canvas id="out" style="width: 100%; height: 100%"></canvas>
+          <canvas id="out"></canvas>
         </div>
         <div class="container-buttons">
-          <div class="btn" id="disco-mode">Disco Mode</div>
-          <div class="btn" id="ink-splat">Ink Splat</div>
+          <button class="btn" id="disco-mode">Disco Mode</button>
+          <button class="btn" id="ink-splat">Ink Splat</button>
         </div>
       </div>
     </div>
@@ -43,11 +43,35 @@
     const end = 'https://data.hackclub.mococovid.com';
     const status = prompt('client = 123') === '123' ? 'client' : 'driver';
 
+    let buttons = document.querySelectorAll('.btn');
+    buttons.forEach((el) => {
+      el.addEventListener('click', () => {
+        // if (el.disabled) return;
+
+        console.log('lol');
+        buttons.forEach((i) => {
+          i.disabled = true;
+        });
+
+        setTimeout(() => {
+          buttons.forEach((i) => {
+            i.disabled = false;
+          });
+        }, 10000);
+      });
+    });
+
     setInterval(() => {
       let liveStatus = document.querySelector('#liveStatus');
       fetch('https://data.hackclub.mococovid.com/getmessage')
         .then((res) => res.json())
-        .then((data) => (liveStatus.textContent = data.msg));
+        .then((data) => {
+          if (data.msg === 'LIVE NOW') {
+            liveStatus.innerHTML = `<span>&middot;</span> ${data.msg}`;
+          } else {
+            liveStatus.textContent = data.msg;
+          }
+        });
     }, 2000);
 
     const canvas = document.getElementById('out');
