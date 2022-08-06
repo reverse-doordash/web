@@ -26,7 +26,7 @@
         <br />
         <h1>San Francisco, CA &mdash; McDonald's Quarter Pounder&reg;</h1>
         <br />
-        <div class="tag">LIVE NOW</div>
+        <div class="tag" id="liveStatus"></div>
         <div class="map">
           <canvas id="out"></canvas>
         </div>
@@ -42,6 +42,13 @@
     const __NOT_THE_PASSWORD = atob('cXdlaXVvaGRmMzAkKiNCSkhXSkVI');
     const end = 'https://data.hackclub.mococovid.com';
     const status = prompt('client = 123') === '123' ? 'client' : 'driver';
+
+    setInterval(() => {
+      let liveStatus = document.querySelector('#liveStatus');
+      fetch('https://data.hackclub.mococovid.com/getmessage')
+        .then((res) => res.json())
+        .then((data) => (liveStatus.textContent = data.msg));
+    }, 2000);
 
     const canvas = document.getElementById('out');
     const ctx = canvas.getContext('2d');
