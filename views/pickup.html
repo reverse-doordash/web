@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <head>
     <link rel="stylesheet" href="/src/index.sass">
 </head>
@@ -9,13 +10,32 @@
                 Home
             </button>
         </div>
-            <p id="timerdetail">
-            </p>    
+        <p>
+        </p>
 
         <div class="map">
-            
+
         </div>
+        <button id="caught" type="button" onmousedown="caughtlackin()">
+            
+                Caught the Deliveryman Lacking
+            
+        </button>
+        
 
     </div>
-    <script src="/src/index.js"></script>
+    <script type="text/javascript">
+        function caughtlackin() {
+            let time = 5;
+            let timer = setInterval(() => {
+    
+                document.querySelector('#caught').innerHTML = time;
+                time--;
+                if (time < 0) {
+                    clearInterval(timer);
+                    window.location.href = '/views/confirm.html'; 
+                }
+            }, 1000);
+        }
+    </script>
 </body>
