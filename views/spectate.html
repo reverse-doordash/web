@@ -54,10 +54,12 @@
           buttons.forEach((i) => {
             i.disabled = false;
           });
-        }, 10000);
+        }, 2500);
       });
     });
+
     let discoToggle = document.querySelector('#disco-mode');
+
     discoToggle.addEventListener('click', async () => {
       console.log('test');
       const res = await fetch(
@@ -67,7 +69,9 @@
         }
       );
     });
+
     let inkToggle = document.querySelector('#ink-splat');
+
     inkToggle.addEventListener('click', async () => {
       const res = await fetch(
         `${end}/modeSelection?discoMode=false&inkSplatter=true`,
@@ -92,6 +96,10 @@
 
     const canvas = document.getElementById('out');
     const ctx = canvas.getContext('2d');
+    // (window.onresize = () => {
+    //   canvas.width = '100%';
+    //   canvas.height = '100%';
+    // })();
     const limits = [
       { x: 37.78680489952002, y: -122.4049480163113 },
       { x: 37.78662352047515, y: -122.40631596968298 },
@@ -156,16 +164,11 @@
     setInterval(async () => {
       const locs = await getlocs();
       const opp = ['driver', 'client'];
-      opp.forEach((el, i) => {
-        if ((i = 0)) {
-          console.log(
-            `${opp[i]} coords: ${locs[opp[i] + '_latitude']}, ${
-              locs[opp[i] + '_longitude']
-            }`
-          );
+      for (let i = 0; i < opp.length; i++) {
+        if (i === 0) {
           repaint(locs[opp[i] + '_latitude'], locs[opp[i] + '_longitude']);
         }
-      });
+      }
     }, 600);
   </script>
 </body>
