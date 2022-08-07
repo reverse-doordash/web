@@ -32,8 +32,8 @@
           <canvas id="out" width="360px" height="400px"></canvas>
         </div>
         <div class="container-buttons">
-          <button class="btn" id="disco-mode">Disco Mode</button>
-          <button class="btn" id="ink-splat">Ink Splat</button>
+          <button class="btn" id="disco-mode">Ghost Mode</button>
+          <button class="btn" id="ink-splat">Super Chat</button>
         </div>
       </div>
     </div>
@@ -74,8 +74,9 @@
     let inkToggle = document.querySelector('#ink-splat');
 
     inkToggle.addEventListener('click', async () => {
+      let msg = prompt('What would you like to say to the participant?');
       const res = await fetch(
-        `${end}/modeSelection?discoMode=false&inkSplatter=true`,
+        `${end}/updateincrement?increment=50&message=${msg}`,
         {
           method: 'POST',
         }
@@ -97,12 +98,10 @@
 
     setInterval(async () => {
       const locs = await getlocs();
-      const opp = ['driver', 'client'];
-      for (let i = 0; i < opp.length; i++) {
-        if (i === 0) {
-          repaint(locs[opp[i] + '_latitude'], locs[opp[i] + '_longitude']);
-        }
-      }
+      ctx.fillStyle = 'blue';
+      repaint(locs['client_latitude'], locs['client_longitude']);
+      ctx.fillStyle = 'red';
+      repaint(locs['driver_latitude'], locs['driver_longitude']);
     }, 600);
   </script>
 </body>

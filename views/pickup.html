@@ -61,9 +61,13 @@
 
   <script src="/src/js/canvas.js"></script>
   <script type="text/javascript">
-      let price = 379;
+    let price = 379;
+    let priceIncrement = 0;
+    let msg = '';
     let priceCount = setInterval(() => {
-      document.querySelector('.tag-price span').innerHTML = (price / 100).toFixed(2);
+      document.querySelector('.tag-price span').innerHTML = (
+        price / 100
+      ).toFixed(2);
       price++;
     }, 500);
 
@@ -80,8 +84,26 @@
     const params = new URLSearchParams(window.location.search);
     let status = params.get('status');
 
-    if (status === 'driver')
+    if (status === 'driver') {
       document.querySelector('.container-buttons').remove();
+      document.querySelector('.tag-price').remove();
+    }
+
+    setInterval(async () => {
+      fetch(`${end}/getincrement`)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.incre > priceIncrement) {
+            priceIncrement = data.incre;
+            price += priceIncrement;
+          }
+          if (!(data.user_msg === '') && !(data.user_msg === msg)) {
+            msg = data.user_msg;
+            alert(`You've received a Super Chat! An anonymous user says: ${data.user_msg}`);
+          }
+        });
+    }, 3000);
 
     setInterval(async () => {
       navigator.geolocation.getCurrentPosition(async (position) => {
