@@ -46,8 +46,6 @@
     let buttons = document.querySelectorAll('.btn');
     buttons.forEach((el) => {
       el.addEventListener('click', () => {
-        // Post discoMode and inkSplat
-
         buttons.forEach((i) => {
           i.disabled = true;
         });
@@ -58,6 +56,25 @@
           });
         }, 10000);
       });
+    });
+    let discoToggle = document.querySelector('#disco-mode');
+    discoToggle.addEventListener('click', async () => {
+      console.log('test');
+      const res = await fetch(
+        `${end}/modeSelection?discoMode=true&inkSplatter=false`,
+        {
+          method: 'POST',
+        }
+      );
+    });
+    let inkToggle = document.querySelector('#ink-splatter');
+    inkToggle.addEventListener('click', async () => {
+      const res = await fetch(
+        `${end}/modeSelection?discoMode=false&inkSplatter=true`,
+        {
+          method: 'POST',
+        }
+      );
     });
 
     setInterval(() => {
@@ -140,7 +157,7 @@
       const locs = await getlocs();
       const opp = ['driver', 'client'];
       opp.forEach((el, i) => {
-        if ((i = 1)) {
+        if ((i = 0)) {
           console.log(
             `${opp[i]} coords: ${locs[opp[i] + '_latitude']}, ${
               locs[opp[i] + '_longitude']
