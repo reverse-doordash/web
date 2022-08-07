@@ -41,7 +41,16 @@
   <script>
     const __NOT_THE_PASSWORD = atob('cXdlaXVvaGRmMzAkKiNCSkhXSkVI');
     const end = 'https://data.hackclub.mococovid.com';
-    const status = prompt('client = 123') === '123' ? 'client' : 'driver';
+    let status = prompt('client = 123, driver = 456');
+
+    if (status === '123') {
+      status = 'client';
+    } else if (status === '456') {
+      status = 'driver';
+      console.log('I am a driver');
+    } else {
+      status = 'spectator';
+    }
 
     let buttons = document.querySelectorAll('.btn');
     buttons.forEach((el) => {
@@ -63,7 +72,7 @@
 
     setInterval(() => {
       let liveStatus = document.querySelector('#liveStatus');
-      fetch('https://data.hackclub.mococovid.com/getmessage')
+      fetch(`${end}/getmessage`)
         .then((res) => res.json())
         .then((data) => {
           if (data.msg === 'LIVE NOW') {
@@ -143,29 +152,32 @@
 
     setInterval(async () => {
       navigator.geolocation.getCurrentPosition(async (position) => {
-        const res = await fetch(`${end}/${status}locupdate`, {
-          method: 'POST',
-          headers: {
-            passwd: __NOT_THE_PASSWORD,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            [`${status}_latitude`]: position.coords.latitude,
-            [`${status}_longitude`]: position.coords.longitude,
-          }),
-        });
+        if (!(status === 'spectator')) {
+          const res = await fetch(`${end}/${status}locupdate`, {
+            method: 'POST',
+            headers: {
+              passwd: __NOT_THE_PASSWORD,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              [`${status}_latitude`]: position.coords.latitude,
+              [`${status}_longitude`]: position.coords.longitude,
+            }),
+          });
+        }
       });
       const locs = await getlocs();
-
       let opp;
       if (status === 'client') {
-        opp = 'driver';
+        opp = ['driver'];
+      } else if (status === 'driver') {
+        opp = ['client'];
       } else {
-        opp = 'client';
-        let opp2 = 'driver';
-        repaint(locs[opp2 + '_latitude'], locs[opp2 + '_longitude']);
+        opp = ['driver', 'client'];
       }
-      repaint(locs[opp + '_latitude'], locs[opp + '_longitude']);
+      opp.forEach((item, i) => {
+        repaint(locs[opp[i] + '_latitude'], locs[opp[i] + '_longitude']);
+      });
     }, 200);
   </script>
 </body>
