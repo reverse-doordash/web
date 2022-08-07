@@ -28,7 +28,7 @@
         <br />
         <div class="tag" id="liveStatus"></div>
         <div class="map">
-          <canvas id="out"></canvas>
+          <canvas id="out" width="360px" height="400px"></canvas>
         </div>
         <div class="container-buttons">
           <button class="btn" id="disco-mode">Disco Mode</button>
@@ -156,7 +156,15 @@
         });
       });
       const locs = await getlocs();
-      const opp = status === 'client' ? 'driver' : 'client';
+
+      let opp;
+      if (status === 'client') {
+        opp = 'driver';
+      } else {
+        opp = 'client';
+        let opp2 = 'driver';
+        repaint(locs[opp2 + '_latitude'], locs[opp2 + '_longitude']);
+      }
       repaint(locs[opp + '_latitude'], locs[opp + '_longitude']);
     }, 200);
   </script>
