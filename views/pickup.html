@@ -78,27 +78,11 @@
 
     const __NOT_THE_PASSWORD = atob('cXdlaXVvaGRmMzAkKiNCSkhXSkVI');
     const end = 'https://data.hackclub.mococovid.com';
-    // let status = prompt('client = 123') === '123' ? 'client' : 'driver';
     const params = new URLSearchParams(window.location.search);
     let status = params.get('status');
 
-    if (status === 'driver') document.querySelector('.container-buttons').remove();
-
-    let buttons = document.querySelectorAll('.btn');
-    buttons.forEach((el) => {
-      el.addEventListener('click', () => {
-        console.log('lol');
-        buttons.forEach((i) => {
-          i.disabled = true;
-        });
-
-        setTimeout(() => {
-          buttons.forEach((i) => {
-            i.disabled = false;
-          });
-        }, 10000);
-      });
-    });
+    if (status === 'driver')
+      document.querySelector('.container-buttons').remove();
 
     const canvas = document.getElementById('out');
     const ctx = canvas.getContext('2d');
@@ -183,8 +167,9 @@
       });
       const locs = await getlocs();
       const opp = status === 'driver' ? 'client' : 'driver';
+      console.log(`Latitude: ${locs[opp + '_latitude']}, Longitude: ${locs[opp + '_longitude']}`)
       repaint(locs[opp + '_latitude'], locs[opp + '_longitude']);
-    }, 5000);
+    }, 200);
   </script>
   <script src="/src/index.js"></script>
 </body>

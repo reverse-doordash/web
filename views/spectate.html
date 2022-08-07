@@ -45,9 +45,9 @@
     let buttons = document.querySelectorAll('.btn');
     buttons.forEach((el) => {
       el.addEventListener('click', () => {
-        // if (el.disabled) return;
+        // Post discoMode and inkSplat
+                
 
-        console.log('lol');
         buttons.forEach((i) => {
           i.disabled = true;
         });
@@ -71,14 +71,10 @@
             liveStatus.textContent = data.msg;
           }
         });
-    }, 2000);
+    }, 1000);
 
     const canvas = document.getElementById('out');
     const ctx = canvas.getContext('2d');
-    // (window.onresize = () => {
-    //   canvas.width = '100%';
-    //   canvas.height = '100%';
-    // })();
     const limits = [
       { x: 37.78680489952002, y: -122.4049480163113 },
       { x: 37.78662352047515, y: -122.40631596968298 },
@@ -141,26 +137,9 @@
     };
 
     setInterval(async () => {
-      navigator.geolocation.getCurrentPosition(async (position) => {
-        if (!(status === 'spectator')) {
-          const res = await fetch(`${end}/${status}locupdate`, {
-            method: 'POST',
-            headers: {
-              passwd: __NOT_THE_PASSWORD,
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              [`${status}_latitude`]: position.coords.latitude,
-              [`${status}_longitude`]: position.coords.longitude,
-            }),
-          });
-        }
-      });
       const locs = await getlocs();
       const opp = ['driver', 'client'];
-      opp.forEach((item, i) => {
-        repaint(locs[opp[i] + '_latitude'], locs[opp[i] + '_longitude']);
-      });
+      repaint(locs[opp[1] + '_latitude'], locs[opp[1] + '_longitude']);
     }, 200);
   </script>
 </body>
