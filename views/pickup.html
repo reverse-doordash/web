@@ -170,7 +170,7 @@
       const locs = await getlocs();
       const opp = status === 'driver' ? 'client' : 'driver';
       repaint(locs[opp + '_latitude'], locs[opp + '_longitude']);
-    }, 200);
+    }, 600);
   </script>
   <script src="/src/index.js"></script>
 </body>

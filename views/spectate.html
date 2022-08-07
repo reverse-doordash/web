@@ -140,9 +140,15 @@
       const locs = await getlocs();
       const opp = ['driver', 'client'];
       opp.forEach((el, i) => {
-        if (i = 1) console.log(`${opp[0]} coords: ${locs[opp[0] + '_latitude']}, ${locs[opp[0] + '_longitude']}`);
+        if ((i = 1)) {
+          console.log(
+            `${opp[i]} coords: ${locs[opp[i] + '_latitude']}, ${
+              locs[opp[i] + '_longitude']
+            }`
+          );
+          repaint(locs[opp[i] + '_latitude'], locs[opp[i] + '_longitude']);
+        }
       });
-      repaint(locs[opp[1] + '_latitude'], locs[opp[1] + '_longitude']);
-    }, 200);
+    }, 600);
   </script>
 </body>
