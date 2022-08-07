@@ -5,28 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 <body>
-  <!-- <div>
-        <div class="back">
-            <button onclick="window.location.href='../index.html'">
-                Home
-            </button>
-        </div>
-        <div id="price">
-
-        </div>
-
-        <div class="map">
-
-        </div>
-        <button id="caught" type="button" onmousedown="caughtlackin()">
-            
-                Caught the Deliveryman Lacking
-            
-        </button>
-        
-
-    </div> -->
-
   <div class="wrapper">
     <div class="container">
       <div class="container-map">
@@ -75,8 +53,8 @@
       clearInterval(priceCount);
 
       window.location.href = '/views/confirm.html';
-      fetch('', {
-        method: 'Post',
+      fetch(`${end}/refresh`, {
+        method: 'POST',
       });
     });
     const __NOT_THE_PASSWORD = atob('cXdlaXVvaGRmMzAkKiNCSkhXSkVI');
@@ -100,7 +78,9 @@
           }
           if (!(data.user_msg === '') && !(data.user_msg === msg)) {
             msg = data.user_msg;
-            alert(`You've received a Super Chat! An anonymous user says: ${data.user_msg}`);
+            alert(
+              `You've received a Super Chat! An anonymous user says: ${data.user_msg}`
+            );
           }
         });
     }, 3000);
