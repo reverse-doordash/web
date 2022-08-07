@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <head>
   <link rel="stylesheet" href="/src/index.sass" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 <body>
   <div class="wrapper">
@@ -46,7 +47,6 @@
     buttons.forEach((el) => {
       el.addEventListener('click', () => {
         // Post discoMode and inkSplat
-                
 
         buttons.forEach((i) => {
           i.disabled = true;
@@ -139,6 +139,9 @@
     setInterval(async () => {
       const locs = await getlocs();
       const opp = ['driver', 'client'];
+      opp.forEach((el, i) => {
+        if (i = 1) console.log(`${opp[0]} coords: ${locs[opp[0] + '_latitude']}, ${locs[opp[0] + '_longitude']}`);
+      });
       repaint(locs[opp[1] + '_latitude'], locs[opp[1] + '_longitude']);
     }, 200);
   </script>

@@ -2,6 +2,7 @@
 
 <head>
   <link rel="stylesheet" href="/src/index.sass" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 <body>
   <!-- <div>
@@ -158,6 +159,7 @@
           headers: {
             passwd: __NOT_THE_PASSWORD,
             'Content-Type': 'application/json',
+            'Cache-Control': 'no-cache',
           },
           body: JSON.stringify({
             [`${status}_latitude`]: position.coords.latitude,
@@ -167,7 +169,6 @@
       });
       const locs = await getlocs();
       const opp = status === 'driver' ? 'client' : 'driver';
-      console.log(`Latitude: ${locs[opp + '_latitude']}, Longitude: ${locs[opp + '_longitude']}`)
       repaint(locs[opp + '_latitude'], locs[opp + '_longitude']);
     }, 200);
   </script>
