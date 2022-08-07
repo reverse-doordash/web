@@ -47,7 +47,7 @@
         </a>
 
         <br />
-        <h1>San Francisco, CA &mdash; McDonald's Quarter Pounder&reg;</h1>
+        <h1>McDonald's Quarter Pounder&reg;</h1>
         <br />
         <!-- <div class="tag" id="liveStatus"></div> -->
         <div class="map">
@@ -81,6 +81,8 @@
     // let status = prompt('client = 123') === '123' ? 'client' : 'driver';
     const params = new URLSearchParams(window.location.search);
     let status = params.get('status');
+
+    if (status === 'driver') document.querySelector('.container-buttons').remove();
 
     let buttons = document.querySelectorAll('.btn');
     buttons.forEach((el) => {
@@ -182,7 +184,7 @@
       const locs = await getlocs();
       const opp = status === 'driver' ? 'client' : 'driver';
       repaint(locs[opp + '_latitude'], locs[opp + '_longitude']);
-    }, 200);
+    }, 5000);
   </script>
   <script src="/src/index.js"></script>
 </body>
